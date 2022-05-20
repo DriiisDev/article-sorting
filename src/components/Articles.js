@@ -1,6 +1,10 @@
 import React from 'react';
 
-function Articles() {
+function Articles(props) {
+    
+    const {articles} = props
+
+    const allArticles = articles
 
     return (
         <div className="card w-50 mx-auto">
@@ -13,11 +17,17 @@ function Articles() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr data-testid="article" key="article-index">
-                    <td data-testid="article-title">Article 1 title</td>
-                    <td data-testid="article-upvotes">Article 1 title</td>
-                    <td data-testid="article-date">Article 1 title</td>
-                </tr>
+                
+                    {allArticles.map((article)=>{
+                        const {title, upvotes, date} = article
+                        return(
+                            <tr data-testid="article" key={date}>
+                            <td data-testid="article-title">{title}</td>
+                            <td data-testid="article-upvotes">{upvotes}</td>
+                            <td data-testid="article-date">{date}</td>
+                            </tr>
+                        );
+                    })}
                 </tbody>
             </table>
         </div>
